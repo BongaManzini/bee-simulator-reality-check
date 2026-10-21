@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B-BBEE Scorecard Simulator & Reality Check | South African Informatics Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-emerald-500/20 selection:text-emerald-400">
+
+  <!-- Background Ambience -->
+  <div class="fixed inset-0 pointer-events-none z-0">
+    <div class="absolute -top-40 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-[140px]"></div>
+    <div class="absolute top-1/2 -right-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-[150px]"></div>
+    <div class="absolute -bottom-40 left-10 w-96 h-96 bg-amber-500/10 rounded-full blur-[140px]"></div>
+  </div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8">
+    <!-- Header -->
+    <header className="border-b border-slate-800 pb-6 mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="px-2.5 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            DTI Codes of Good Practice (Generic & QSE Scorecard)
+          </span>
+          <span class="text-xs font-mono text-slate-400 hidden sm:inline">SA Informatics Master Portfolio</span>
+        </div>
+        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white flex items-center gap-3">
+          <span>🇿🇦 B-BBEE Scorecard Simulator</span>
+        </h1>
+        <p class="text-slate-400 text-sm sm:text-base mt-1 max-w-2xl font-light">
+          Mathematical decision-support tool modeling the exact DTI scorecard pillars. Proves empirically how companies of any ownership structure achieve Level 4 compliance through operational transformation.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="https://github.com/BongaManzini/bee-simulator-reality-check" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 text-xs font-mono flex items-center gap-2 transition-all">
+          <i data-lucide="github" class="w-4 h-4"></i>
+          <span>GitHub</span>
+        </a>
+        <a href="../" class="px-3 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold font-mono flex items-center gap-1.5 transition-all">
+          <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+          <span>Portfolio</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- The Reality Check Callout Banner -->
+    <div class="bg-gradient-to-r from-emerald-950/40 via-slate-900 to-cyan-950/40 border border-emerald-500/30 rounded-2xl p-5 mb-8">
+      <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+          <i data-lucide="scale" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <span>The Reality Check: Disproving the "Whites are Banned" Myth</span>
+              <span class="text-[10px] uppercase font-mono px-2 py-0.5 bg-emerald-500/20 text-emerald-300 rounded border border-emerald-500/40">Pure Math</span>
+            </h3>
+            <button onclick="applyPreset('white-sme')" class="px-3 py-1 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold font-mono transition-all">
+              Load 100% White-Owned SME Scenario →
+            </button>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
+            A common viral myth claims that "non-black business owners are locked out of commercial contracts." In reality, ownership accounts for only <strong>25 out of 109 Generic points</strong> (or 25 of 100). By investing in Skills Development, Enterprise & Supplier Development (ESD), and Socio-Economic Development (SED), a business with <strong>0% black ownership</strong> easily attains <strong>Level 4 Compliance (100% Procurement Recognition)</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Grid: Calculator & HUD -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Left: Interactive Sliders (7 cols) -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <!-- Preset Selector Pills -->
+        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-4">
+          <div class="text-xs font-mono uppercase text-slate-400 mb-2 flex items-center gap-1.5 font-semibold">
+            <i data-lucide="sliders" class="w-3.5 h-3.5 text-emerald-400"></i>
+            <span>Load Real-World Scenarios</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <button onclick="applyPreset('white-sme')" id="btn-white-sme" class="px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 border border-slate-700 text-left transition-all">
+              <span class="block font-bold text-emerald-400">White-Owned</span>
+              <span class="text-[10px] text-slate-400">High Skills & ESD</span>
+            </button>
+            <button onclick="applyPreset('level1-black')" id="btn-level1" class="px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 border border-slate-700 text-left transition-all">
+              <span class="block font-bold text-cyan-400">100% Black Owned</span>
+              <span class="text-[10px] text-slate-400">EME / Full Redress</span>
+            </button>
+            <button onclick="applyPreset('balanced-corp')" id="btn-corp" class="px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 border border-slate-700 text-left transition-all">
+              <span class="block font-bold text-indigo-400">JSE Generic</span>
+              <span class="text-[10px] text-slate-400">Diversified Equity</span>
+            </button>
+            <button onclick="applyPreset('untransformed')" id="btn-untransformed" class="px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 border border-slate-700 text-left transition-all">
+              <span class="block font-bold text-rose-400">Untransformed</span>
+              <span class="text-[10px] text-slate-400">Zero Investment</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Element 1: Ownership -->
+        <div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-400 font-mono text-xs flex items-center justify-center font-bold">1</span>
+              <div>
+                <h4 class="text-sm font-bold text-white">Ownership</h4>
+                <p class="text-[11px] text-slate-400">Voting rights & economic interest of designated groups</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <span id="val-ownership" class="font-mono text-base font-bold text-emerald-400">0.0</span>
+              <span class="text-xs text-slate-500 font-mono"> / 25 pts</span>
+            </div>
+          </div>
+          <input type="range" id="input-ownership" min="0" max="25" step="0.5" value="0" class="w-full accent-emerald-500 cursor-pointer" oninput="calculateScore()">
+          <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+            <span>0% Black Equity (0 pts)</span>
+            <span class="text-amber-400/80">Subminimum: 10 pts (40%)</span>
+            <span>25%+ Black Equity (25 pts)</span>
+          </div>
+        </div>
+
+        <!-- Element 2: Management Control -->
+        <div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-indigo-500/10 text-indigo-400 font-mono text-xs flex items-center justify-center font-bold">2</span>
+              <div>
+                <h4 class="text-sm font-bold text-white">Management Control</h4>
+                <p class="text-[11px] text-slate-400">Board participation, executive & senior management equity</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <span id="val-management" class="font-mono text-base font-bold text-indigo-400">8.0</span>
+              <span class="text-xs text-slate-500 font-mono"> / 19 pts</span>
+            </div>
+          </div>
+          <input type="range" id="input-management" min="0" max="19" step="0.5" value="8" class="w-full accent-indigo-500 cursor-pointer" oninput="calculateScore()">
+          <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+            <span>0% Exec (0 pts)</span>
+            <span>Balanced Management (19 pts)</span>
+          </div>
+        </div>
+
+        <!-- Element 3: Skills Development (Priority Element) -->
+        <div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-cyan-500/10 text-cyan-400 font-mono text-xs flex items-center justify-center font-bold">3</span>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <h4 class="text-sm font-bold text-white">Skills Development</h4>
+                  <span class="px-1.5 py-0.2 bg-amber-500/10 text-amber-400 border border-amber-500/30 text-[9px] rounded font-mono">Priority</span>
+                </div>
+                <p class="text-[11px] text-slate-400">Training spend on black staff, learnerships & bursaries</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <span id="val-skills" class="font-mono text-base font-bold text-cyan-400">22.0</span>
+              <span class="text-xs text-slate-500 font-mono"> / 25 pts</span>
+            </div>
+          </div>
+          <input type="range" id="input-skills" min="0" max="25" step="0.5" value="22" class="w-full accent-cyan-500 cursor-pointer" oninput="calculateScore()">
+          <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+            <span>0% Leviable Payroll</span>
+            <span class="text-amber-400/80">Subminimum: 8 pts (40%)</span>
+            <span>6% Payroll + Learnerships</span>
+          </div>
+        </div>
+
+        <!-- Element 4: Enterprise & Supplier Development (Priority Element) -->
+        <div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-purple-500/10 text-purple-400 font-mono text-xs flex items-center justify-center font-bold">4</span>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <h4 class="text-sm font-bold text-white">Enterprise & Supplier Development (ESD)</h4>
+                  <span class="px-1.5 py-0.2 bg-amber-500/10 text-amber-400 border border-amber-500/30 text-[9px] rounded font-mono">Priority</span>
+                </div>
+                <p class="text-[11px] text-slate-400">Preferential procurement, SME loans, supplier grants</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <span id="val-esd" class="font-mono text-base font-bold text-purple-400">40.0</span>
+              <span class="text-xs text-slate-500 font-mono"> / 42 pts</span>
+            </div>
+          </div>
+          <input type="range" id="input-esd" min="0" max="42" step="0.5" value="40" class="w-full accent-purple-500 cursor-pointer" oninput="calculateScore()">
+          <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+            <span>No Procurement Redress</span>
+            <span class="text-amber-400/80">Subminimum: 16 pts (40%)</span>
+            <span>Max Empowered Suppliers</span>
+          </div>
+        </div>
+
+        <!-- Element 5: Socio-Economic Development (SED) -->
+        <div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-pink-500/10 text-pink-400 font-mono text-xs flex items-center justify-center font-bold">5</span>
+              <div>
+                <h4 class="text-sm font-bold text-white">Socio-Economic Development (SED)</h4>
+                <p class="text-[11px] text-slate-400">Community education, healthcare, and welfare contributions</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <span id="val-sed" class="font-mono text-base font-bold text-pink-400">5.0</span>
+              <span class="text-xs text-slate-500 font-mono"> / 5 pts</span>
+            </div>
+          </div>
+          <input type="range" id="input-sed" min="0" max="5" step="0.5" value="5" class="w-full accent-pink-500 cursor-pointer" oninput="calculateScore()">
+          <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+            <span>0% NPAT Contribution</span>
+            <span>1% NPAT Contribution (5 pts)</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: Real-time Compliance HUD & Logic breakdown (5 cols) -->
+      <div class="lg:col-span-5 space-y-6">
+
+        <!-- Score & Contributor Status Card -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 relative overflow-hidden shadow-2xl">
+          <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="flex items-center justify-between text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">
+            <span>Official Result</span>
+            <span id="compliance-date">DTI Gazette 36928</span>
+          </div>
+
+          <div class="flex items-baseline gap-2 mb-4">
+            <span id="total-score" class="text-5xl font-black text-white font-mono tracking-tight">75.0</span>
+            <span class="text-slate-400 font-mono text-sm">/ 116 Maximum Points</span>
+          </div>
+
+          <!-- Level Badge -->
+          <div id="level-badge" class="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 mb-5 flex items-center justify-between">
+            <div>
+              <span class="text-[11px] font-mono uppercase text-emerald-400 block font-semibold">B-BBEE Status</span>
+              <h3 id="level-title" class="text-2xl font-black text-emerald-300">Level 4 Contributor</h3>
+            </div>
+            <div class="text-right">
+              <span class="text-[11px] font-mono uppercase text-slate-400 block">Procurement Recognition</span>
+              <span id="recognition-pct" class="text-xl font-bold font-mono text-emerald-400">100%</span>
+            </div>
+          </div>
+
+          <!-- Progress Bar Breakdown -->
+          <div class="space-y-2 mb-6">
+            <div class="flex justify-between text-xs font-mono">
+              <span class="text-slate-400">Scorecard Completion</span>
+              <span id="score-percentage" class="text-slate-200 font-bold">64.6%</span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-3 overflow-hidden p-0.5 border border-slate-800 flex">
+              <div id="bar-ownership" class="h-full bg-emerald-500 rounded-l transition-all duration-300" style="width: 0%"></div>
+              <div id="bar-management" class="h-full bg-indigo-500 transition-all duration-300" style="width: 6.9%"></div>
+              <div id="bar-skills" class="h-full bg-cyan-500 transition-all duration-300" style="width: 19%"></div>
+              <div id="bar-esd" class="h-full bg-purple-500 transition-all duration-300" style="width: 34.5%"></div>
+              <div id="bar-sed" class="h-full bg-pink-500 rounded-r transition-all duration-300" style="width: 4.3%"></div>
+            </div>
+          </div>
+
+          <!-- Priority Element Subminimum Checklist -->
+          <div class="bg-slate-950 rounded-2xl p-4 border border-slate-800 space-y-2.5">
+            <span class="text-[11px] font-mono uppercase text-slate-400 font-semibold block mb-1">
+              Priority Sub-minimum Rules (40% required)
+            </span>
+            <div id="check-ownership" class="flex items-center justify-between text-xs">
+              <span class="text-slate-300">Ownership (min 10 pts)</span>
+              <span class="text-amber-400 font-mono text-[11px] flex items-center gap-1">
+                <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i> Below 40%
+              </span>
+            </div>
+            <div id="check-skills" class="flex items-center justify-between text-xs">
+              <span class="text-slate-300">Skills Dev (min 8 pts)</span>
+              <span class="text-emerald-400 font-mono text-[11px] flex items-center gap-1">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i> Subminimum Met
+              </span>
+            </div>
+            <div id="check-esd" class="flex items-center justify-between text-xs">
+              <span class="text-slate-300">ESD (min 16 pts)</span>
+              <span class="text-emerald-400 font-mono text-[11px] flex items-center gap-1">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i> Subminimum Met
+              </span>
+            </div>
+            <p id="discount-warning" class="text-[11px] text-amber-300/80 pt-2 border-t border-slate-800/80 leading-tight">
+              ⚠️ Priority discounting applied: When Ownership sub-minimum is missed, the achieved level drops by 1 tier (e.g. from Level 3 to Level 4).
+            </p>
+          </div>
+
+          <!-- Commercial Implication Summary -->
+          <div class="mt-5 pt-4 border-t border-slate-800 text-xs text-slate-300 space-y-2">
+            <h5 class="font-bold text-white flex items-center gap-1.5">
+              <i data-lucide="briefcase" class="w-3.5 h-3.5 text-cyan-400"></i>
+              <span>Commercial & Tendering Impact</span>
+            </h5>
+            <p id="commercial-impact" class="leading-relaxed font-light text-slate-300">
+              At <strong>Level 4</strong>, your clients claim <strong>R1.00 for every R1.00</strong> spent with you on their own Preferential Procurement scorecard. You are 100% compliant for corporate supplier panels, mining tenders, and public sector contracts without transferring company equity.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Legislative Matrix Reference -->
+        <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-5 text-xs text-slate-400 space-y-3 font-light">
+          <h5 class="text-white font-semibold flex items-center gap-1.5 text-xs font-mono">
+            <i data-lucide="book-open" class="w-3.5 h-3.5 text-emerald-400"></i>
+            <span>DTI Codes Points Thresholds</span>
+          </h5>
+          <div class="grid grid-cols-2 gap-2 text-[11px] font-mono">
+            <div class="p-2 bg-slate-950 rounded border border-slate-800/80">
+              <span class="text-emerald-400 font-bold block">Level 1: ≥ 100 pts</span>
+              <span>135% Recognition</span>
+            </div>
+            <div class="p-2 bg-slate-950 rounded border border-slate-800/80">
+              <span class="text-emerald-400 font-bold block">Level 2: 95 – 99 pts</span>
+              <span>125% Recognition</span>
+            </div>
+            <div class="p-2 bg-slate-950 rounded border border-slate-800/80">
+              <span class="text-cyan-400 font-bold block">Level 3: 90 – 94 pts</span>
+              <span>110% Recognition</span>
+            </div>
+            <div class="p-2 bg-slate-950 rounded border border-slate-800/80">
+              <span class="text-cyan-400 font-bold block">Level 4: 80 – 89 pts</span>
+              <span>100% Recognition</span>
+            </div>
+            <div class="p-2 bg-slate-950 rounded border border-slate-800/80">
+              <span class="text-amber-400 font-bold block">Level 5: 75 – 79 pts</span>
+              <span>80% Recognition</span>
+            </div>
+            <div class="p-2 bg-slate-950 rounded border border-slate-800/80">
+              <span class="text-rose-400 font-bold block">Level 8: 40 – 54 pts</span>
+              <span>10% Recognition</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Technical Informatics Context Footer -->
+    <footer class="mt-12 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 font-mono gap-4">
+      <p>Created by Bonga Manzini • BSc Informatics (UNISA) • South African Socio-Economic Informatics Portfolio</p>
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/BongaManzini/bee-simulator-reality-check" target="_blank" class="hover:text-emerald-400 transition-colors">GitHub Repository</a>
+        <span>•</span>
+        <a href="https://bongamanzini.github.io/portfolio/" target="_blank" class="hover:text-emerald-400 transition-colors">Developer Portfolio</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    function calculateScore() {
+      const ownership = parseFloat(document.getElementById('input-ownership').value) || 0;
+      const management = parseFloat(document.getElementById('input-management').value) || 0;
+      const skills = parseFloat(document.getElementById('input-skills').value) || 0;
+      const esd = parseFloat(document.getElementById('input-esd').value) || 0;
+      const sed = parseFloat(document.getElementById('input-sed').value) || 0;
+
+      // Update values
+      document.getElementById('val-ownership').textContent = ownership.toFixed(1);
+      document.getElementById('val-management').textContent = management.toFixed(1);
+      document.getElementById('val-skills').textContent = skills.toFixed(1);
+      document.getElementById('val-esd').textContent = esd.toFixed(1);
+      document.getElementById('val-sed').textContent = sed.toFixed(1);
+
+      const totalRaw = ownership + management + skills + esd + sed;
+      document.getElementById('total-score').textContent = totalRaw.toFixed(1);
+
+      // Total max is 116 points (25+19+25+42+5)
+      const maxPts = 116;
+      const pct = ((totalRaw / maxPts) * 100).toFixed(1);
+      document.getElementById('score-percentage').textContent = pct + '%';
+
+      // Width of bars
+      document.getElementById('bar-ownership').style.width = ((ownership / maxPts) * 100) + '%';
+      document.getElementById('bar-management').style.width = ((management / maxPts) * 100) + '%';
+      document.getElementById('bar-skills').style.width = ((skills / maxPts) * 100) + '%';
+      document.getElementById('bar-esd').style.width = ((esd / maxPts) * 100) + '%';
+      document.getElementById('bar-sed').style.width = ((sed / maxPts) * 100) + '%';
+
+      // Check priority sub-minimums (40% threshold)
+      const ownershipSubMet = ownership >= 10.0; // 40% of 25 = 10
+      const skillsSubMet = skills >= 8.0;        // 40% of 20 = 8
+      const esdSubMet = esd >= 16.0;             // 40% of 40 = 16
+
+      updateSubminimumBadge('check-ownership', ownershipSubMet, 'Ownership (min 10 pts)');
+      updateSubminimumBadge('check-skills', skillsSubMet, 'Skills Dev (min 8 pts)');
+      updateSubminimumBadge('check-esd', esdSubMet, 'ESD (min 16 pts)');
+
+      // Determine unadjusted level from score
+      let unadjustedLevel = 9; // Non-compliant
+      let recognition = '0%';
+      let levelTitle = 'Non-Compliant Contributor';
+
+      if (totalRaw >= 100) { unadjustedLevel = 1; recognition = '135%'; }
+      else if (totalRaw >= 95) { unadjustedLevel = 2; recognition = '125%'; }
+      else if (totalRaw >= 90) { unadjustedLevel = 3; recognition = '110%'; }
+      else if (totalRaw >= 80) { unadjustedLevel = 4; recognition = '100%'; }
+      else if (totalRaw >= 75) { unadjustedLevel = 5; recognition = '80%'; }
+      else if (totalRaw >= 70) { unadjustedLevel = 6; recognition = '60%'; }
+      else if (totalRaw >= 55) { unadjustedLevel = 7; recognition = '50%'; }
+      else if (totalRaw >= 40) { unadjustedLevel = 8; recognition = '10%'; }
+      else { unadjustedLevel = 9; recognition = '0%'; }
+
+      // Apply priority element penalty: If ownership sub-minimum is missed, or skills AND esd missed
+      let finalLevel = unadjustedLevel;
+      let discountApplied = false;
+
+      if (!ownershipSubMet || (!skillsSubMet && !esdSubMet)) {
+        if (finalLevel < 8) {
+          finalLevel += 1;
+          discountApplied = true;
+        }
+      }
+
+      // Recognition updates based on final level
+      const recognitionTable = {
+        1: '135%', 2: '125%', 3: '110%', 4: '100%',
+        5: '80%', 6: '60%', 7: '50%', 8: '10%', 9: '0%'
+      };
+      recognition = recognitionTable[finalLevel] || '0%';
+
+      const titleEl = document.getElementById('level-title');
+      const badgeEl = document.getElementById('level-badge');
+      const recEl = document.getElementById('recognition-pct');
+      const discountEl = document.getElementById('discount-warning');
+      const impactEl = document.getElementById('commercial-impact');
+
+      recEl.textContent = recognition;
+
+      if (finalLevel <= 4) {
+        titleEl.textContent = `Level ${finalLevel} Contributor`;
+        titleEl.className = 'text-2xl font-black text-emerald-300';
+        badgeEl.className = 'p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 mb-5 flex items-center justify-between';
+        recEl.className = 'text-xl font-bold font-mono text-emerald-400';
+        impactEl.innerHTML = `At <strong>Level ${finalLevel} (${recognition} Recognition)</strong>, commercial clients multiply their spend with your firm by <strong>${recognition}</strong> when reporting their procurement compliance. Your business qualifies for all enterprise panels without altering shareholder equity.`;
+      } else if (finalLevel <= 7) {
+        titleEl.textContent = `Level ${finalLevel} Contributor`;
+        titleEl.className = 'text-2xl font-black text-amber-300';
+        badgeEl.className = 'p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 mb-5 flex items-center justify-between';
+        recEl.className = 'text-xl font-bold font-mono text-amber-400';
+        impactEl.innerHTML = `At <strong>Level ${finalLevel} (${recognition} Recognition)</strong>, clients receive partial recognition. Improving ESD or Skills development by 5–10 points will quickly elevate your standing to Level 4.`;
+      } else if (finalLevel === 8) {
+        titleEl.textContent = 'Level 8 Contributor';
+        titleEl.className = 'text-2xl font-black text-orange-300';
+        badgeEl.className = 'p-4 rounded-2xl bg-orange-500/10 border border-orange-500/30 mb-5 flex items-center justify-between';
+        recEl.className = 'text-xl font-bold font-mono text-orange-400';
+        impactEl.innerHTML = `At Level 8 (10% Recognition), corporate clients receive negligible procurement credit. Substantial investment in skills training or designated supplier sourcing is advised.`;
+      } else {
+        titleEl.textContent = 'Non-Compliant Contributor';
+        titleEl.className = 'text-2xl font-black text-rose-400';
+        badgeEl.className = 'p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 mb-5 flex items-center justify-between';
+        recEl.className = 'text-xl font-bold font-mono text-rose-400';
+        impactEl.innerHTML = `Score is under 40 points. Corporate clients cannot count any expenditure with your company towards their scorecard.`;
+      }
+
+      if (discountApplied) {
+        discountEl.classList.remove('hidden');
+        discountEl.innerHTML = `⚠️ <strong>Priority Discount Applied:</strong> The raw score qualified for Level ${unadjustedLevel}, but missing the 40% Ownership sub-minimum dropped the final status by one level to <strong>Level ${finalLevel}</strong>.`;
+      } else {
+        discountEl.classList.add('hidden');
+      }
+
+      lucide.createIcons();
+    }
+
+    function updateSubminimumBadge(elemId, isMet, label) {
+      const el = document.getElementById(elemId);
+      if (isMet) {
+        el.innerHTML = `
+          <span class="text-slate-300">${label}</span>
+          <span class="text-emerald-400 font-mono text-[11px] flex items-center gap-1">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i> Subminimum Met
+          </span>
+        `;
+      } else {
+        el.innerHTML = `
+          <span class="text-slate-300">${label}</span>
+          <span class="text-amber-400 font-mono text-[11px] flex items-center gap-1">
+            <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i> Below 40% (Penalty Risk)
+          </span>
+        `;
+      }
+    }
+
+    function applyPreset(type) {
+      if (type === 'white-sme') {
+        // 0% ownership, high skills, high ESD, high SED -> Level 4
+        document.getElementById('input-ownership').value = 0;
+        document.getElementById('input-management').value = 8.5;
+        document.getElementById('input-skills').value = 23;
+        document.getElementById('input-esd').value = 40;
+        document.getElementById('input-sed').value = 5;
+      } else if (type === 'level1-black') {
+        document.getElementById('input-ownership').value = 25;
+        document.getElementById('input-management').value = 17;
+        document.getElementById('input-skills').value = 24;
+        document.getElementById('input-esd').value = 41;
+        document.getElementById('input-sed').value = 5;
+      } else if (type === 'balanced-corp') {
+        document.getElementById('input-ownership').value = 16;
+        document.getElementById('input-management').value = 13;
+        document.getElementById('input-skills').value = 18;
+        document.getElementById('input-esd').value = 35;
+        document.getElementById('input-sed').value = 4.5;
+      } else if (type === 'untransformed') {
+        document.getElementById('input-ownership').value = 0;
+        document.getElementById('input-management').value = 0;
+        document.getElementById('input-skills').value = 4;
+        document.getElementById('input-esd').value = 10;
+        document.getElementById('input-sed').value = 0;
+      }
+      calculateScore();
+    }
+
+    // Run on load
+    window.addEventListener('DOMContentLoaded', () => {
+      calculateScore();
+    });
+  </script>
+</body>
+</html>
