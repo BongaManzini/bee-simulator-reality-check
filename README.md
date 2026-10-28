@@ -1,12 +1,12 @@
-# 📊 B-BBEE Reality Check: Scorecard Calculator & Myths
+# B-BBEE Reality Check: Scorecard Calculator & Myths
 ### An Interactive Calculator Based on the DTI Codes of Good Practice (Gazette 36928)
 
-> **Live Calculator**: [https://bongamanzini.github.io/bee-simulator-reality-check/](https://bongamanzini.github.io/bee-simulator-reality-check/)  
+> **Live Calculator**: [https://bongamanzini.github.io/bee-simulator-reality-check/](https://bongamanzini.github.io/bee-simulator-reality-check/) 
 > **Built by**: Bonga Manzini (BSc Informatics student at UNISA)
 
 ---
 
-## 🔬 About This Project
+## About This Project
 
 A very common myth in South African business is that BEE means a company owner must give away 51% of their business shares to do business with the government or large corporations.
 
@@ -58,14 +58,14 @@ I read through the official Department of Trade and Industry (DTI) Codes of Good
 
 ---
 
-## 🛠️ Tech Stack
+## ️ Tech Stack
 - **HTML5 & Vanilla JavaScript**
 - **Tailwind CSS**
 - **Interactive Scoring Engine**
 
 ---
 
-## 🤝 Contributing & Pull Requests
+## Contributing & Pull Requests
 
 Have an idea to improve the calculator or add specific sector charters (like ICT or Construction)?
 1. Fork this repository

@@ -35,7 +35,7 @@
           <span class="text-xs font-mono text-slate-400 hidden sm:inline">SA Informatics Master Portfolio</span>
         </div>
         <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white flex items-center gap-3">
-          <span>🇿🇦 B-BBEE Scorecard Simulator</span>
+          <span> B-BBEE Scorecard Simulator</span>
         </h1>
         <p class="text-slate-400 text-sm sm:text-base mt-1 max-w-2xl font-light">
           Mathematical decision-support tool modeling the exact DTI scorecard pillars. Proves empirically how companies of any ownership structure achieve Level 4 compliance through operational transformation.
@@ -298,7 +298,7 @@
               </span>
             </div>
             <p id="discount-warning" class="text-[11px] text-amber-300/80 pt-2 border-t border-slate-800/80 leading-tight">
-              ⚠️ Priority discounting applied: When Ownership sub-minimum is missed, the achieved level drops by 1 tier (e.g. from Level 3 to Level 4).
+              ️ Priority discounting applied: When Ownership sub-minimum is missed, the achieved level drops by 1 tier (e.g. from Level 3 to Level 4).
             </p>
           </div>
 
@@ -475,7 +475,7 @@
 
       if (discountApplied) {
         discountEl.classList.remove('hidden');
-        discountEl.innerHTML = `⚠️ <strong>Priority Discount Applied:</strong> The raw score qualified for Level ${unadjustedLevel}, but missing the 40% Ownership sub-minimum dropped the final status by one level to <strong>Level ${finalLevel}</strong>.`;
+        discountEl.innerHTML = `️ <strong>Priority Discount Applied:</strong> The raw score qualified for Level ${unadjustedLevel}, but missing the 40% Ownership sub-minimum dropped the final status by one level to <strong>Level ${finalLevel}</strong>.`;
       } else {
         discountEl.classList.add('hidden');
       }
